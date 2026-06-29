@@ -1,6 +1,8 @@
 ---
 name: wen-xin
 description: Meta-skill：每次任务结束（声称完成前）或阶段性汇报前，**必须**调用此 Skill 进行「问心」式自我审视，否则不得声称完成或汇报。「问心」= 问自己内心：目标真的达成了吗？适合所有类型任务。自动触发，不可跳过。
+author: XP
+homepage: https://github.com/xp1001/wen-xin
 ---
 
 # 问心 — 任务验证与修正流程
