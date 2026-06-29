@@ -44,34 +44,51 @@
 | 基本完成（有瑕疵） | 存在次要问题，但核心目标达成 |
 | 未完成 | 核心目标未达成或发现实质性 Bug |
 
-## 使用方式
+## 安装技能
 
-**方式一：AGENTS.md 注入（推荐）**
-
-在 `~/.config/opencode/AGENTS.md` 中加入：
-
-```markdown
-## 问心
-每次声称完成或汇报前，必须调用 `skill({ name: "wen-xin" })` 执行验证。铁律，不可跳过。
-```
-
-每次会话自动生效，无需额外操作。
-
-**方式二：触发词唤醒**
-
-直接在 prompt 中以 `wen-xin` 开头：
-
-> wen-xin，实现一个排序函数...
-
-agent 会加载问心并在完成后输出验证报告。
-
-两种方式不冲突：AGENTS.md 让问心成为默认习惯，触发词用于主动查看完整报告。
-
-## 安装
+所有兼容工具都读取 `~/.claude/skills/` 或 `~/.agents/skills/`，克隆一次即可处处生效：
 
 ```bash
+git clone git@github.com:xp1001/wen-xin.git ~/.claude/skills/wen-xin
+# 或
 git clone git@github.com:xp1001/wen-xin.git ~/.agents/skills/wen-xin
 ```
+
+自动生效于：**OpenCode / Claude Code / Cline / Roo Code / Augment / Codex / Workbuddy**
+
+## 强制触发
+
+技能默认是"按需加载"(agent 根据描述决定是否启用)。要让问心**每次都跑**，需在全局规则文件中加入强制指令。
+
+### 规则内容（所有平台通用）
+
+```
+## 问心
+每次声称完成或汇报前，必须调用 wen-xin skill 执行验证。铁律，不可跳过。
+```
+
+### 各平台规则文件位置
+
+| 平台 | 规则文件 | 说明 |
+|------|---------|------|
+| **OpenCode / Workbuddy** | `~/.config/opencode/AGENTS.md` | 全局生效 |
+| **Claude Code / Cline / Roo** | 项目 `CLAUDE.md` 或 `~/.claude/CLAUDE.md` | 项目或用户级 |
+| **Cursor** | 项目 `.cursorrules` 或 `.cursor/rules/*.mdc` | 项目级 |
+| **Windsurf** | 项目 `.windsurfrules` | 项目级 |
+| **OpenClaw** | `~/.openclaw/workspace/SOUL.md` | 用户级 |
+| **GitHub Copilot** | `.github/copilot-instructions.md` | 项目级 |
+| **Augment Code** | 项目 `AGENTS.md` | 自动读取 |
+| **其他** | 项目中创建 `AGENTS.md` 或 `CLAUDE.md` | 通用方案 |
+
+### 一句话法
+
+不支持 skill 系统的工具，直接把 `SKILL.md` 全文复制到规则文件中即可。
+
+### 触发词
+
+prompt 中以 `wen-xin` 开头可主动唤醒并查看完整报告：
+
+> wen-xin，实现一个排序函数...
 
 ## 验证测试
 
