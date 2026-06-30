@@ -52,7 +52,7 @@ git clone git@github.com:xp1001/wen-xin.git ~/.agents/skills/wen-xin
 
 ```
 ## 问心
-每次声称完成或汇报前，必须调用 wen-xin skill 执行验证。铁律，不可跳过。
+每次声称完成或汇报前，必须调用 wen-xin skill 过 4 个问题，答案必须在回复中可见。铁律，不可跳过。
 ```
 
 ### 各平台规则文件位置
